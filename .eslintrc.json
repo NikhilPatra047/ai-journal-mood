@@ -1,3 +1,8 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "rules": {
+    // Override our default settings just for this directory
+    "semi": ["error", "never"], 
+    "quotes": ["off", "single"]
+  }
 }
