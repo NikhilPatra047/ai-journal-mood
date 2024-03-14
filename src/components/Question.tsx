@@ -29,7 +29,8 @@ export default function Question() {
         <button type="submit" className="bg-blue-400 ml-2 px-4 py-2 rounded-lg text-lg">Ask</button>
       </form>
       { loading && <div>Loading...</div> }
-      { response && (
+      { response
+        ? (
           <div className="flex justify-between items-center bg-zinc-300/40 p-4 border-black/10 border mt-2 rounded-lg text-sm font-medium">
             <p className='w-[95%]'>
               <span className='font-bold mr-1'>Analysis: </span>
@@ -37,7 +38,16 @@ export default function Question() {
             </p>
               <MdOutlineCancel size={20} style={{ cursor: 'pointer' }} onClick={() => setResponse(null)} />
           </div>
-      ) }
+        )
+        : (
+          <div className="flex justify-between items-center bg-zinc-300/40 p-4 border-black/10 border mt-2 rounded-lg text-sm font-medium">
+            <p className='w-[95%]'>
+              { 'Something went wrong. Please try again.' }
+            </p>
+              <MdOutlineCancel size={20} style={{ cursor: 'pointer' }} onClick={() => setResponse(null)} />
+          </div>
+        ) 
+    }
     </div>
   )
 }
