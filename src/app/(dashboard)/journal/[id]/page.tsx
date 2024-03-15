@@ -1,8 +1,7 @@
 import Editor from "@/components/Editor"
-import type { Analysis, ENTRY } from "../../../../../utils/type"
+import type { ENTRY } from "../../../../../utils/type"
 import { getUserByClerkId } from "../../../../../utils/auth"
 import { prisma } from "../../../../../utils/db"
-import { boolean } from "zod"
 
 const getEntry = async (id: string) => {
   const user = await getUserByClerkId()
@@ -25,7 +24,7 @@ export default async function EntryPage({ params: { id } }: { params: { id: stri
   const entry: ENTRY = await getEntry(id)
   return (
     <div className="h-full w-full">
-      <Editor entry={ entry } />
+      <Editor entry={ entry } id={id} />
     </div>
   )
 }

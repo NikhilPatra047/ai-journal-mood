@@ -1,9 +1,9 @@
 import { getUserByClerkId } from "../../../../utils/auth"
-import type { Analysis, ClerkUser, ENTRY } from "../../../../utils/type"
+import type { ClerkUser, ENTRY } from "../../../../utils/type"
 import { prisma } from "../../../../utils/db"
-import { revalidatePath } from "next/cache"
 import { NextResponse } from "next/server"
 import { analyse } from "../../../../utils/ai"
+import { update } from "../../../../utils/actions"
 
 export const POST = async () => {
   const user: ClerkUser = await getUserByClerkId()
@@ -29,8 +29,8 @@ export const POST = async () => {
       sentimentScore: analysis?.sentimentScore as number
     }
   })
-
-  revalidatePath('/journal')
+  
+  update(['/journal'])
   // Didn't solve the entire problem
 
   return NextResponse.json({ data: entry })

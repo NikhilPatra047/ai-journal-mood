@@ -3,7 +3,7 @@ import { getUserByClerkId } from "../../../../../utils/auth"
 import { prisma } from "../../../../../utils/db"
 import type { ClerkUser, ENTRY } from "../../../../../utils/type"
 import { analyse } from "../../../../../utils/ai"
-import { revalidatePath } from "next/cache"
+import { update } from "../../../../../utils/actions"
 
 export const PATCH = async (request: Request, { params: { id } }: { params: { id: string }}) => {
   const { content } = await request.json()
@@ -50,7 +50,7 @@ export const PATCH = async (request: Request, { params: { id } }: { params: { id
     }
   })
 
-  revalidatePath(`/journal/${updatedEntry.id}`)
+  update([`/journal/${updatedEntry.id}`])
 
   return NextResponse.json({ data: { ...updatedEntry, analysis: updated } })
 } 

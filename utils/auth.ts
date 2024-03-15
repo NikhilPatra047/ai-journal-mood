@@ -1,5 +1,5 @@
 import { auth } from "@clerk/nextjs"
-import type { AuthUser, ClerkUser } from "./type"
+import type { AuthUser, ClerkUser, ENTRY } from "./type"
 import { prisma } from "./db"
 
 export const getUserByClerkId = async () => {

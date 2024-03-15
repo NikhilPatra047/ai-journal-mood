@@ -21,7 +21,6 @@ const getData = async () => {
 
 export default async function History() {
   const { analyses, average } = await getData()
-  console.log(analyses, average)
   return (
     <div className="w-full h-full">
       <div>

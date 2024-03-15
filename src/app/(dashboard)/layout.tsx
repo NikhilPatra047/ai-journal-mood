@@ -2,6 +2,8 @@ import { UserButton } from '@clerk/nextjs'
 import type { REACT } from '../../../utils/type'
 import Link from 'next/link'
 import { TbCircleLetterM } from "react-icons/tb"
+import { update } from '../../../utils/actions'
+import { Toaster } from 'react-hot-toast'
 
 const links = [
   { href: '/', label: 'Home' },
@@ -39,6 +41,7 @@ export default function DashboardLayout({ children }: REACT) {
         </header>
         <div className="ml-[200px] w-[calc(100vw-200px)] overflow-auto fixed h-[calc(100vh-60px)]">
           {children}
+          <Toaster />
         </div>
       </div>
     </div>

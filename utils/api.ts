@@ -1,3 +1,4 @@
+
 const createURL = (path: string) => {
   return window.location.origin + path
 }
@@ -19,6 +20,8 @@ export const createNewEntry = async () => {
     method: "POST",
   })
 
+  
+
   if (res.ok) {
     const data = await res.json()
     return data.data
@@ -34,5 +37,16 @@ export const askQuestion = async (question: string) => {
   if (res.ok) {
     const data = await res.json()
     return data.data
+  }
+}
+
+export const deleteEntry = async (id: string) => {
+  const res = await fetch(new Request(createURL(`/api/delete`)), {
+    method: "DELETE",
+    body: JSON.stringify({ id })
+  })
+
+  if (res.ok) {
+    return res.json()
   }
 }
