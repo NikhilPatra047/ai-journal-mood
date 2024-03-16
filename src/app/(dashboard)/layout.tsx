@@ -1,9 +1,12 @@
+'use client'
+
 import { UserButton } from '@clerk/nextjs'
 import type { REACT } from '../../../utils/type'
 import Link from 'next/link'
 import { TbCircleLetterM } from "react-icons/tb"
-import { update } from '../../../utils/actions'
+import { useEffect, useState } from "react"
 import { Toaster } from 'react-hot-toast'
+import { RxHamburgerMenu } from "react-icons/rx"
 
 const links = [
   { href: '/', label: 'Home' },
@@ -12,10 +15,11 @@ const links = [
 ]
 
 export default function DashboardLayout({ children }: REACT) {
+  const [open, setOpen] = useState<boolean>(false)
   return (
-    <div className="h-screen w-screen relative">
-      <aside className="fixed w-[200px] top-0 left-0 h-full border-r border-black/10">
-        <div className='text-center flex items-center text-xl p-4'>
+    <div className={`h-screen w-screen relative`}>
+      <aside className={`absolute transition duration-300 ease-in-out ${open? 'max-md:translate-x-0': 'max-md:translate-x-[-100%]'} z-10 max-md:bg-white md:fixed w-[200px] top-0 left-0 h-full border-r border-black/10`}>
+        <div onClick={() => setOpen(!open)} className='text-center flex items-center text-xl p-4'>
           <TbCircleLetterM size={20} />
           <span className='ml-1'>Mood Journal</span>
         </div>
@@ -35,11 +39,14 @@ export default function DashboardLayout({ children }: REACT) {
       </aside>
       <div className="h-full">
         <header className="h-[60px] relative border-b border-black/10">
-          <div className='h-full w-full px-6 flex items-center justify-end'>
+          <div className='h-full w-full px-6 flex items-center justify-end max-md:justify-between'>
+            <div onClick={() => setOpen(!open)} className='md:hidden'>
+              <RxHamburgerMenu size={20} />
+            </div>
             <UserButton afterSignOutUrl='/' />
           </div>
         </header>
-        <div className="ml-[200px] w-[calc(100vw-200px)] overflow-auto fixed h-[calc(100vh-60px)]">
+        <div className="md:ml-[200px] w-full md:w-[calc(100vw-200px)] overflow-auto fixed h-[calc(100vh-60px)]">
           {children}
           <Toaster />
         </div>

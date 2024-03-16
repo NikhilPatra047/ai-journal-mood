@@ -30,7 +30,7 @@ export default async function JournalPage() {
       <div>
         <Question />
       </div>
-      <div className="grid grid-cols-3 items-start gap-4 mt-10">
+      <div className="grid grid-cols-1 lg:grid-cols-3 items-start gap-4 mt-10">
         <NewEntryCard />
         <EntryCollection entries={entries} />
       </div>
