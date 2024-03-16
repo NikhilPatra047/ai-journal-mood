@@ -67,11 +67,14 @@ export default memo(function Editor({ entry, id }: { entry: ENTRY, id: string })
     <div className="w-full h-full grid grid-cols-3">
       <div className="col-span-2">
         {loading && <Spinner styles="m-2" />}
-        <textarea ref={focusRef} className="w-full h-full p-8 text-xl outline-none" value={value} onChange={(e) => setValue(e.target.value)} />
+        <textarea ref={focusRef} className="w-full h-full p-8 text-md md:text-xl outline-none" value={value} onChange={(e) => setValue(e.target.value)} />
       </div>
       <div className="border-l border-black/10">
         <div className="bg-blue-300 px-6 py-10" style={{ backgroundColor: color, color: textColor }}>
-          <h2 className="text-2xl text-center font-bold">{mood.toUpperCase()} {emoji}</h2>
+          <h2 className="text-lg md:text-2xl text-center font-bold">
+            <p>{mood.toUpperCase()}</p>
+            <p>{emoji}</p>
+          </h2>
         </div>
         <div>
           <ul>
@@ -79,8 +82,8 @@ export default memo(function Editor({ entry, id }: { entry: ENTRY, id: string })
               analysis_data.map((item, index) => {
                 return (
                   <li className="flex flex-col px-2 py-4 border-b border-black/10 items-center justify-between" key={index}>
-                    <span className="text-lg font-semibold">{item.name}</span>
-                    <span className="text-center">{item.value}</span>
+                    <span className="text-md md:text-lg font-semibold">{item.name}</span>
+                    <span className="text-sm md:text-md text-center">{item.value}</span>
                   </li>
                 )
               })
