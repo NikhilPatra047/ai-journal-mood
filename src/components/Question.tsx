@@ -25,19 +25,19 @@ export default function Question() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className='flex items-center'>
-        <input disabled={loading} className="px-4 py-2 border border-black/20 text-lg rounded-lg" onChange={onChange} value={value} type="text" placeholder="Ask a question..." />
-        <button disabled={loading} type="submit" className="bg-blue-400 ml-2 px-4 py-2 rounded-lg text-lg">Ask</button>
+      <form onSubmit={handleSubmit} className='flex md:flex-row flex-col items-center'>
+        <input disabled={loading} className="px-4 py-2 border border-black/20 text-lg rounded-lg max-md:w-full" onChange={onChange} value={value} type="text" placeholder="Ask a question..." />
+        <button disabled={loading} type="submit" className="bg-blue-400 md:ml-2 max-md:mt-2 px-4 py-2 max-md:w-full rounded-lg text-lg">Ask</button>
         { loading && <Spinner styles="m-2" /> }
       </form>
       { response
         && (
-          <div className="flex justify-between items-center bg-zinc-300/40 p-4 border-black/10 border mt-2 rounded-lg text-sm font-medium">
-            <p className='w-[95%]'>
-              <span className='font-bold mr-1'>Analysis: </span>
+          <div className="flex max-md:flex-col justify-between items-center bg-zinc-300/40 p-4 border-black/10 border mt-2 rounded-lg text-sm font-medium">
+            <p className='w-full max-md:text-center md:w-[95%]'>
+              <span className='font-bold md:mr-1'>Analysis: </span>
               { response }
             </p>
-              <MdOutlineCancel size={20} style={{ cursor: 'pointer' }} onClick={() => setResponse(null)} />
+            <MdOutlineCancel size={20} style={{ marginTop: '5px', cursor: 'pointer' }} onClick={() => setResponse(null)} />
           </div>
         )
       }

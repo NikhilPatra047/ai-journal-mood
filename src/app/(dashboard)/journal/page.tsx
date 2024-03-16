@@ -26,7 +26,7 @@ export default async function JournalPage() {
   const entries = await getEntries()
   return (
     <div className="p-10 bg-zinc-400/10">
-      <h2 className="text-3xl mb-8">Journal Dashboard</h2>
+      <h2 className="text-3xl max-md:text-center mb-8">Journal Dashboard</h2>
       <div>
         <Question />
       </div>
