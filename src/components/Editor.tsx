@@ -45,6 +45,7 @@ export default memo(function Editor({ entry, id }: { entry: ENTRY, id: string })
       const updated = await updateEntry(entry.id, _value)
       setAnalysisData(updated.analysis)
       setLoading(false)
+      router.refresh()
     },
     saveOnUnmount: false,
     interval: 1000
